@@ -3,10 +3,10 @@ var fs = require('fs');
 var $ = jQuery = require('jquery');
 $.csv = require('jquery-csv');
 //------------------------CONFIG --------------------
-var DOMAIN = 'alleycorner.com';
-var TIMEWAIT = 20000;
-var FILENAME = "abstractart.csv";
-var HASHTAG = "#alley #alleycorner.com #wallart #art #decor #homedecor";
+var DOMAIN = 'shoescorners.com';
+var TIMEWAIT = 320000;
+var FILENAME = "all.csv";
+var HASHTAG = "#shoescorners.com #shoes #sneaker #decor #homedecor";
 //---------------------------------------------------
 
 (async () => { 
