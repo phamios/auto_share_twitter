@@ -4,7 +4,6 @@ var $ = jQuery = require('jquery');
 $.csv = require('jquery-csv');
 //------------------------CONFIG --------------------
 var DOMAIN = 'shoescorners.com';
-var TIMEWAIT = 320000;
 var FILENAME = "all.csv";
 var HASHTAG = "#shoescorners.com #shoes #sneaker #decor #homedecor";
 //---------------------------------------------------
@@ -38,10 +37,6 @@ var HASHTAG = "#shoescorners.com #shoes #sneaker #decor #homedecor";
 
 
 async function facebook(browser, videos) {
-
-    //login facebook page
-    //post with hash tags
-  
     //click
     var cookiefb = `sb=ohlyXti_aPimZjmpMv1z0eVB; datr=oxlyXjyCqlMqbzYmsyeEcwtQ; dpr=1.5; ; locale=vi_VN; c_user=100048005537050; xs=15%3A_qvzgSCxUFyJ0A%3A2%3A1585154059%3A-1%3A-1; fr=1qgvpvAGQUKzGPZVr.AWXDW87q7kLunJrs_NBh6oq5c68.Bechmi.Z4.AAA.0.0.Bee4gL.AWVC9Xu1; spin=r.1001895338_b.trunk_t.1585154060_s.1_v.2_; act=1585154124035%2F18; wd=1280x216; presence=EDvF3EtimeF1585154155EuserFA21B48005537050A2EstateFDutF1585154065698CEchF_7bCC`;
     var arrfb = cookiefb.split(";");
@@ -61,7 +56,6 @@ async function facebook(browser, videos) {
     await pagefb.setViewport({ width: 1280, height: 800 });
   
     var navigationPromisefb = pagefb.waitForNavigation();
-    //pagefb.on('console', consoleObj => console.log(consoleObj.text()));
   
     var URLfb = 'https://m.facebook.com/login/?ref=dbl&fl';
   
@@ -75,45 +69,30 @@ async function facebook(browser, videos) {
 
     for (var video of videos) {
       try {
-        await pagefb.waitFor(2000);
+        await pagefb.waitFor(80000);
         URLfb = "https://m.facebook.com/wallcanvasdecoration/";
         await pagefb.goto(URLfb, { waitUntil: 'networkidle2', timeout: 0 });
         await pagefb.evaluate(_ => {
           window.scrollBy(0, window.innerHeight);
         });
-        await pagefb.waitFor(2000);
-        // await pagefb.waitForSelector('#feedx_sprouts_container');
-        await navigationPromisefb;
-        // await pagefb.waitForSelector('#feedx_sprouts_container .navigationFocus');
-        // await navigationPromisefb;
+        await pagefb.waitFor(80000); 
+        await navigationPromisefb; 
         await pagefb.click('._2ph_'); 
-        await pagefb.waitFor(2000);
+        await pagefb.waitFor(80000);
         await navigationPromisefb;
         await pagefb.click('textarea[class="_5whq input composerInput"]');
-        await pagefb.type('textarea[class="_5whq input composerInput"]',  video.link + ` ` + video.text + ` ` + video.tags.join(' '));
-        // await pagefb.evaluate(async (video) => {
-        //   await new Promise((resolve, reject) => {
-        //     //console.log(idsel.innerHTML);
-        //     var x = document.getElementById("u_a_15");
-        //     var sel = x.querySelector('textarea[placeholder="Write something..."]');
-        //     sel.innerHTML = video.link + ` ` + video.text + ` ` + video.tags.join(' ');
-        //     sel.focus();
-        //     // sel.setSelectionRange(sel.value.length, sel.value.length);
-        //     resolve();
-        //   }, video);
-        // }, video);
-  
-        //await pagefb.click('#feedx_sprouts_container .navigationFocus'); 
+        await pagefb.type('textarea[class="_5whq input composerInput"]',video.link + ` ` + video.text + ` ` + video.tags);
+      
+        await pagefb.waitFor(80000);
         await pagefb.keyboard.press(String.fromCharCode(32));
-        await pagefb.waitFor(5000);
-        await pagefb.click('#feedx_sprouts_container button[type="submit"]');
+        await pagefb.click('button[data-sigil="touchable submit_composer"]');
         await pagefb.waitForNavigation({ waitUntil: 'networkidle0' });
   
         console.log("fb comment! " + video.text);
   
       }
       catch (e) {
-  
+        console.log(e);
       }
     }
   }
