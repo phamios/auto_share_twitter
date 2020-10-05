@@ -4,9 +4,9 @@ var $ = jQuery = require('jquery');
 $.csv = require('jquery-csv');
 //------------------------CONFIG --------------------
 var DOMAIN = 'shoescorners.com';
-var TIMEWAIT = 320000;
+var TIMEWAIT = 80000;
 var FILENAME = "all.csv";
-var HASHTAG = "#shoescorners.com #shoes #sneaker #decor #homedecor";
+var HASHTAG = "#sneaker ";
 //---------------------------------------------------
 
 (async () => { 
