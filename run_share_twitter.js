@@ -4,13 +4,15 @@ var $ = jQuery = require('jquery');
 $.csv = require('jquery-csv');
 //------------------------CONFIG --------------------
 var DOMAIN = 'shoescorners.com';
-var TIMEWAIT = 80000;
+var TIMEWAIT = 180000;
 var FILENAME = "all.csv";
-var HASHTAG = "#sneaker ";
+var HASHTAG = " #beauty #sneaker #shoes ";
+var TWITTERNAME = "wallcorners";
+var TWITTERPASS = "1q2w3e4r!@#";
 //---------------------------------------------------
 
 (async () => { 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36');
   await page.setViewport({ width: 1280, height: 800 }); 
@@ -57,8 +59,8 @@ async function twitter(browser, videos) {
   var URLfb = 'https://twitter.com/login';
 
   await pagefb.goto(URLfb, { waitUntil: 'networkidle2', timeout: 0 })
-  await pagefb.type('input[type="text"]', 'wallcorners');
-  await pagefb.type('input[type="password"]', '1q2w3e4r!@#');
+  await pagefb.type('input[type="text"]', TWITTERNAME);
+  await pagefb.type('input[type="password"]', TWITTERPASS);
 
   await pagefb.click('div[data-testid="LoginForm_Login_Button"]');
   for (var video of videos) {
