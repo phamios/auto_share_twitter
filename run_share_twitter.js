@@ -3,12 +3,13 @@ var fs = require('fs');
 var $ = jQuery = require('jquery');
 $.csv = require('jquery-csv');
 //------------------------CONFIG --------------------
-var DOMAIN = 'linhcorner.com';
+var DOMAIN = 'shoescorners.com';
 var TIMEWAIT = 180000;
-var FILENAME = "linhcorner.csv";
-var HASHTAG = "#beauty #cosmetic ";
-var USERNAME = "stevenbold";
-var PASSWORD = '1q2w3e4r!@#';
+var FILENAME = "all.csv";
+var HASHTAG = " #beauty #sneaker #shoes ";
+var TWITTERNAME = "wallcorners";
+var TWITTERPASS = "1q2w3e4r!@#";
+
 //---------------------------------------------------
 
 (async () => { 
@@ -57,8 +58,10 @@ async function twitter(browser, videos) {
   var URLfb = 'https://twitter.com/login';
 
   await pagefb.goto(URLfb, { waitUntil: 'networkidle2', timeout: 0 })
-  await pagefb.type('input[type="text"]', USERNAME);
-  await pagefb.type('input[type="password"]', PASSWORD);
+
+  await pagefb.type('input[type="text"]', TWITTERNAME);
+  await pagefb.type('input[type="password"]', TWITTERPASS);
+
 
   await pagefb.click('div[data-testid="LoginForm_Login_Button"]');
   for (var video of videos) {

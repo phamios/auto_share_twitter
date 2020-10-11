@@ -9,7 +9,7 @@ var HASHTAG = "#shoescorners.com #shoes #sneaker #decor #homedecor";
 //---------------------------------------------------
 
 (async () => { 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36');
   await page.setViewport({ width: 1280, height: 800 }); 
@@ -70,20 +70,20 @@ async function facebook(browser, videos) {
     for (var video of videos) {
       try {
         await pagefb.waitFor(80000);
-        URLfb = "https://m.facebook.com/wallcanvasdecoration/";
+        URLfb = "https://m.facebook.com/Zhask-Bracelets-149102632430027";
         await pagefb.goto(URLfb, { waitUntil: 'networkidle2', timeout: 0 });
         await pagefb.evaluate(_ => {
           window.scrollBy(0, window.innerHeight);
         });
-        await pagefb.waitFor(80000); 
+        await pagefb.waitFor(480000); 
         await navigationPromisefb; 
         await pagefb.click('._2ph_'); 
-        await pagefb.waitFor(80000);
+        await pagefb.waitFor(280000);
         await navigationPromisefb;
         await pagefb.click('textarea[class="_5whq input composerInput"]');
         await pagefb.type('textarea[class="_5whq input composerInput"]',video.link + ` ` + video.text + ` ` + video.tags);
       
-        await pagefb.waitFor(80000);
+        await pagefb.waitFor(180000);
         await pagefb.keyboard.press(String.fromCharCode(32));
         await pagefb.click('button[data-sigil="touchable submit_composer"]');
         await pagefb.waitForNavigation({ waitUntil: 'networkidle0' });
